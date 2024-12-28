@@ -10,13 +10,11 @@ namespace ZimniKapitola
     {
         public string futureOwner {  get; set; }
         public bool isHidden { get; set; }
-        HidingSpots hs = new HidingSpots();
-        public void hide()
+        
+        public Gift(string futureOwner, bool isHidden) 
         {
-            if(!hs.spots.Equals(null) && !isHidden)
-            {
-                //function where the gift will be hidden in the most efficient place
-            }
+            this.futureOwner = futureOwner;
+            this.isHidden = isHidden;
         }
     }
 }
