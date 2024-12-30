@@ -26,7 +26,7 @@ public class SpotManager
     {
         string name = "";
         int chance = 0;
-
+        Spot spot = new Spot(doplnit jmeno skryse ze souboru skrysi);
         foreach (var item in items)
         {
             if (item is int && chance == 0)
@@ -39,29 +39,13 @@ public class SpotManager
             }
             if (!(name == "") && !(chance == 0))
             {
-                Spot spot = new Spot(doplnit jmeno skryse ze souboru skrysi);
                 spot.SetChance(name, chance);
                 chance = 0;
                 name = "";
             }
         }
-       /* if (spots.ContainsKey(spotName))
-        {
-            Spot spot = spots[spotName];
-            spot.SetChance("MOM", someone1);
-            spot.SetChance("DAD", someone2);
-            spot.SetChance("CHILD1", someone3);
-            spot.SetChance("CHILD2", someone4);
-            spot.SetChance("CHILD3", child3Chance);
-        }*/
-    }
-
-    public void MarkSpotFilled(string spotName)
-    {
-        if (spots.ContainsKey(spotName))
-        {
-            spots[spotName].isFilled = true;
-        }
+        spots.Add(spot.name, spot);
+        spots[spot.name].isFilled = true;
     }
 
     public Spot GetSpot(string spotName)
