@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace ZimniKapitola
 {
@@ -10,10 +6,9 @@ namespace ZimniKapitola
     {
         public void AddFamilyMem(string filepath)
         {
-            using (StreamReader sr = new StreamReader(filepath, System.Text.Encoding.UTF8))
+            using (StreamReader sr = new StreamReader(filepath))
             {
                 Dictionary<string, string> personAndTheirGiftDict = new Dictionary<string, string>();
-                char[] ar;
                 string line;
                 string name = "";
                 string gift = "";
@@ -34,8 +29,8 @@ namespace ZimniKapitola
                     personAndTheirGiftDict.Add(string.Concat(name.Where(c => !char.IsWhiteSpace(c))),
                                                string.Concat(gift.Where(c => !char.IsWhiteSpace(c))));
                 }
+                sr.Close();
             }
         }
-
     }
 }

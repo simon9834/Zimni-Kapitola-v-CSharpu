@@ -1,32 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
+﻿
 using ZimniKapitola;
 
 public class SpotManager
 {
     private Dictionary<string, Spot> spots;
     private Dictionary<Spot, Gift> hiddenGifts { get; set; }
+    private UserSpots usrspt;
+    private int i = 0;
+    private Spot spot;
 
-    public SpotManager()
+    public SpotManager(UserSpots usrspt)
     {
         spots = new Dictionary<string, Spot>();
         hiddenGifts = new Dictionary<Spot, Gift>();
+        this.usrspt = usrspt;
     }
 
     public void AddSpot(string spotName)
     {
         if (!spots.ContainsKey(spotName))
         {
-            spots[spotName] = new Spot(spotName);
+            spot = new Spot(spotName);
+            spots.Add(spotName, spot);
         }
     }
     
-    public void SetSpotNamesAndChances(params object[] items)
+    public void FillSpot(params object[] items) // string -> name of one member of the fam, int -> the chance
     {
         string name = "";
         int chance = 0;
-        Spot spot = new Spot(doplnit jmeno skryse ze souboru skrysi);
         foreach (var item in items)
         {
             if (item is int && chance == 0)
@@ -44,7 +46,6 @@ public class SpotManager
                 name = "";
             }
         }
-        spots.Add(spot.name, spot);
         spots[spot.name].isFilled = true;
     }
 
@@ -53,7 +54,7 @@ public class SpotManager
         return spots.ContainsKey(spotName) ? spots[spotName] : null;
     }
 
-    public void hideGift(Gift gift)
+    public void HideGift(Gift gift)
     {
         int chance = 0;
         int bestChance = 0;

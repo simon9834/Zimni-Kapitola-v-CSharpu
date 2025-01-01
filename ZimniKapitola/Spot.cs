@@ -1,11 +1,10 @@
 ﻿
-using System.Threading.Channels;
 
 public class Spot
 {
     public string name { get; private set; }
     public bool isFilled { get; set; }
-    public Dictionary<string, int> chances { get; private set; }
+    public Dictionary<string, int> chances { get; private set; } // string who's chance it is and int -> the chance
 
     public Spot(string name)
     {
@@ -23,22 +22,23 @@ public class Spot
     {
         return chances.ContainsKey(who) ? chances[who] : 0;
     }
+
     public int CalculateAdjustedSum(string whoWillRecieveTheGift)
     {
         int sum = 0;
 
         foreach (var chance in chances)
         {
-            if (chance.Key == whoWillRecieveTheGift)
+            if (chance.Key == whoWillRecieveTheGift) // if -> the chances of the one who will recieve the gift will be doubled
             {
                 sum += chance.Value * 2;
             }
             else
             {
-                sum += chance.Value;
+                sum += chance.Value; // others chances will just add to the sum integer
             }
         }
-        return sum;
+        return sum; // returning the sum of the chances
     }
 }
 
