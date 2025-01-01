@@ -4,16 +4,14 @@ using ZimniKapitola;
 public class SpotManager
 {
     private Dictionary<string, Spot> spots;
-    private Dictionary<Spot, Gift> hiddenGifts { get; set; }
-    private UserSpots usrspt;
+    public Dictionary<Spot, Gift> hiddenGifts { get; set; } = new Dictionary<Spot, Gift>();
     private int i = 0;
     private Spot spot;
 
-    public SpotManager(UserSpots usrspt)
+    public SpotManager()
     {
         spots = new Dictionary<string, Spot>();
         hiddenGifts = new Dictionary<Spot, Gift>();
-        this.usrspt = usrspt;
     }
 
     public void AddSpot(string spotName)
@@ -24,7 +22,7 @@ public class SpotManager
             spots.Add(spotName, spot);
         }
     }
-    
+
     public void FillSpot(params object[] items) // string -> name of one member of the fam, int -> the chance
     {
         string name = "";
@@ -68,6 +66,11 @@ public class SpotManager
                 spotName = spot.Key;
             }
         }
-        hiddenGifts.Add(spots[spotName], gift);
+        try { 
+        hiddenGifts.Add(spots[spotName], gift);}
+        catch(Exception e)
+        {
+            Console.WriteLine("gay");
+        }
     }
 }
