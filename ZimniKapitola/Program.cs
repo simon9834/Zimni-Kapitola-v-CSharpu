@@ -25,6 +25,7 @@ for (int i = 0; i < gh.Gifts.Count; i++)
 }
 string path = "TheFinalGiftPlacement.txt";
 string path2 = "AllInformations.txt";
+//storing all values into the txt files
 using (StreamWriter sw = new StreamWriter(path))
 {
     using (StreamWriter sw2 = new StreamWriter(path2))
@@ -37,6 +38,8 @@ using (StreamWriter sw = new StreamWriter(path))
         {
             sw2.WriteLine($"{familyMembers.Family[i]} má dárek pro {gh.FutureOwner[i]} a tím dárkem je {gh.Gifts[i]} a je schovaný {userSpots.usrSpots[i]}. Šance na nalezení je: {sm.bestChances[i] / familyMembers.Family.Count + 1}%");
         }
+        sw.Close();
+        sw2.Close();
     }
 }
 

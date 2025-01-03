@@ -5,6 +5,11 @@ namespace ZimniKapitola
     {
         public List<string> Gifts { get; set; } = new List<string>();
         public List<string> FutureOwner { get; set; } = new List<string>();
+        /// <summary>
+        /// this method reads from files mentioned below and stores all the values from 'em into the dedicated lists
+        /// </summary>
+        /// <param name="GiftFile"> this is a string pathway to a text file containing all gifts </param>
+        /// <param name="FutureOwnersFile"> this is a string pathway to a text file containing all future owners of the gifts </param>
         public void AddGiftAndOwners(string GiftFile, string FutureOwnersFile)
         {
             string line;
@@ -14,6 +19,7 @@ namespace ZimniKapitola
                 {
                     Gifts.Add(line);
                 }
+                sr.Close();
             }
             using (StreamReader sr = new StreamReader(FutureOwnersFile))
             {
