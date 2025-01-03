@@ -16,7 +16,6 @@ namespace ZimniKapitola
                 {
                     _family.Add(line);
                 }
-                sr.Close();
             }
         }
     }

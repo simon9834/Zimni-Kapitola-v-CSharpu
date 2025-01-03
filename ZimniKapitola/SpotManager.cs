@@ -3,23 +3,15 @@ using ZimniKapitola;
 
 public class SpotManager
 {
-    private Dictionary<string, Spot> spots;
+    private Dictionary<string, Spot> spots { get; set; } = new Dictionary<string, Spot>();
     public Dictionary<Spot, Gift> hiddenGifts { get; set; } = new Dictionary<Spot, Gift>();
-    private int i = 0;
     private Spot spot;
-
-    public SpotManager()
-    {
-        spots = new Dictionary<string, Spot>();
-        hiddenGifts = new Dictionary<Spot, Gift>();
-    }
 
     public void AddSpot(string spotName)
     {
         if (!spots.ContainsKey(spotName))
         {
             spot = new Spot(spotName);
-            spots.Add(spotName, spot);
         }
     }
 
@@ -29,9 +21,9 @@ public class SpotManager
         int chance = 0;
         foreach (var item in items)
         {
-            if (item is int && chance == 0)
+            if (item is long longVal && chance == 0)
             {
-                chance = (int)item;
+                chance = Convert.ToInt32(longVal);
             }
             else if (item is string && name == "")
             {
@@ -44,9 +36,19 @@ public class SpotManager
                 name = "";
             }
         }
-        spots[spot.name].isFilled = true;
+        spots.Add(spot.name, spot);
     }
 
+    public void check()
+    {
+        foreach (var spot in spots)
+        {
+            foreach (var chance in spot.Value.chances)
+            {
+                Console.WriteLine(spot.Key.ToString() + " " + chance.Value + " " + chance.Key);
+            }
+        }
+    }
     public Spot GetSpot(string spotName)
     {
         return spots.ContainsKey(spotName) ? spots[spotName] : null;
@@ -55,22 +57,18 @@ public class SpotManager
     public void HideGift(Gift gift)
     {
         int chance = 0;
-        int bestChance = 0;
-        string spotName = "";
-        foreach (var spot in spots)
+        int bestChance = int.MaxValue;
+        string spotName = null;
+        foreach (var spot in spots.Where(x => !x.Value.isFilled))
         {
             chance = spot.Value.CalculateAdjustedSum(gift.futureOwner);
-            if (chance < bestChance)
+            if (chance < bestChance && chance != 0)
             {
                 bestChance = chance;
-                spotName = spot.Key;
+                spotName = spot.Key.ToString();
             }
         }
-        try { 
-        hiddenGifts.Add(spots[spotName], gift);}
-        catch(Exception e)
-        {
-            Console.WriteLine("gay");
-        }
+        spots[spotName].isFilled = true;
+        hiddenGifts.Add(spots[spotName], gift); 
     }
 }

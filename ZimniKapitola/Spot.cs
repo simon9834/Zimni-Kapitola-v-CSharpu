@@ -15,7 +15,7 @@ public class Spot
 
     public void SetChance(string who, int chance)
     {
-        chances[who] = chance;
+       chances.Add(who, chance);
     }
 
     public int GetChance(string who)

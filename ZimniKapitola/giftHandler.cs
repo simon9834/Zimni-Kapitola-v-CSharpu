@@ -14,7 +14,6 @@ namespace ZimniKapitola
                 {
                     Gifts.Add(line);
                 }
-                sr.Close();
             }
             using (StreamReader sr = new StreamReader(FutureOwnersFile))
             {
