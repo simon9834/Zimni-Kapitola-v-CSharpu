@@ -1,6 +1,9 @@
 ﻿
 namespace ZimniKapitola
 {
+    /// <summary>
+    /// a class that reads from á text file that contains all the hiding spots used later on
+    /// </summary>
     public class UserSpots
     {
         public List<string> usrSpots {  get; set; } = new List<string>();

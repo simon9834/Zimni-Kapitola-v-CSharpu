@@ -1,6 +1,9 @@
 ﻿
 namespace ZimniKapitola
 {
+    /// <summary>
+    /// a class that works as an object Gift that has a name, future owner and a boolean that determins whether its hidden
+    /// </summary>
     public class Gift
     {
         public string name {  get; set; }

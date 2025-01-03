@@ -1,6 +1,9 @@
 ﻿
 namespace ZimniKapitola
 {
+    /// <summary>
+    /// a class that reads from text file of gifts and of the ones who the gifts are for later and stores the values in the lists
+    /// </summary>
     public class giftHandler
     {
         public List<string> Gifts { get; set; } = new List<string>();

@@ -1,5 +1,7 @@
 ﻿
-
+/// <summary>
+/// a class that works as an object but also has some methods and dictionary for storing values
+/// </summary>
 public class Spot
 {
     public string name { get; private set; }

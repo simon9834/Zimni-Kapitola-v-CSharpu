@@ -1,6 +1,8 @@
 ﻿
 using ZimniKapitola;
-
+/// <summary>
+/// a class that handles most of the actions in the whole project
+/// </summary>
 public class SpotManager
 {
     private Dictionary<string, Spot> spots { get; set; } = new Dictionary<string, Spot>();

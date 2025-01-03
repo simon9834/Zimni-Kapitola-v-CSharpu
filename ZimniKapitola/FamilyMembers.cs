@@ -1,6 +1,9 @@
 ﻿
 namespace ZimniKapitola
 {
+    /// <summary>
+    /// class where i read the members of the family from a text file and stores em in to a list
+    /// </summary>
     public class FamilyMembers
     {
         private List<string> _family = new List<string>();

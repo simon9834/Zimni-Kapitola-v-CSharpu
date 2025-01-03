@@ -1,5 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿
 using ZimniKapitola;
+//main class that starts everything
 
 FamilyMembers familyMembers = new FamilyMembers();
 familyMembers.AddFamilyMem("Family.txt");
@@ -25,6 +26,7 @@ for (int i = 0; i < gh.Gifts.Count; i++)
 }
 string path = "TheFinalGiftPlacement.txt";
 string path2 = "AllInformations.txt";
+
 //storing all values into the txt files
 using (StreamWriter sw = new StreamWriter(path))
 {
