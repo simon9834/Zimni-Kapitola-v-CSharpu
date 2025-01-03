@@ -6,7 +6,7 @@ public class SpotManager
     private Dictionary<string, Spot> spots { get; set; } = new Dictionary<string, Spot>();
     public Dictionary<Spot, Gift> hiddenGifts { get; set; } = new Dictionary<Spot, Gift>();
     private Spot spot;
-
+    public List<int> bestChances { get; set; } = new List<int>(); 
     public void AddSpot(string spotName)
     {
         if (!spots.ContainsKey(spotName))
@@ -39,21 +39,6 @@ public class SpotManager
         spots.Add(spot.name, spot);
     }
 
-    public void check()
-    {
-        foreach (var spot in spots)
-        {
-            foreach (var chance in spot.Value.chances)
-            {
-                Console.WriteLine(spot.Key.ToString() + " " + chance.Value + " " + chance.Key);
-            }
-        }
-    }
-    public Spot GetSpot(string spotName)
-    {
-        return spots.ContainsKey(spotName) ? spots[spotName] : null;
-    }
-
     public void HideGift(Gift gift)
     {
         int chance = 0;
@@ -68,6 +53,7 @@ public class SpotManager
                 spotName = spot.Key.ToString();
             }
         }
+        bestChances.Add(bestChance);
         spots[spotName].isFilled = true;
         hiddenGifts.Add(spots[spotName], gift); 
     }
