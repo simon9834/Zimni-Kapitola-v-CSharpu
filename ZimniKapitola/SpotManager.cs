@@ -5,7 +5,7 @@ using ZimniKapitola;
 /// </summary>
 public class SpotManager
 {
-    private Dictionary<string, Spot> spots { get; set; } = new Dictionary<string, Spot>();
+    public Dictionary<string, Spot> spots { get; set; } = new Dictionary<string, Spot>();
     public Dictionary<Spot, Gift> hiddenGifts { get; set; } = new Dictionary<Spot, Gift>();
     private Spot spot;
     public List<int> bestChances { get; set; } = new List<int>();
@@ -20,6 +20,34 @@ public class SpotManager
             spot = new Spot(spotName);
         }
     }
+    public bool checkGiftsVsSpots(giftHandler gh)
+    {
+        if (gh.Gifts.Count <= spots.Count)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public List<int> randomNumbers(giftHandler gh)
+    {
+        List<int> numbers = new List<int>();
+        Random rn = new Random();
+        int number;
+        while(numbers.Count < gh.Gifts.Count) {
+            number = rn.Next(0, gh.Gifts.Count);
+            if (!numbers.Contains(number))
+            {
+                numbers.Add(number);
+            }
+        }
+        return numbers;
+    }
+    
+    
+
     /// <summary>
     /// this method gets smth like an array of objects and decides whether the object is a string or long and based ont that 
     /// saves the value and when both string and long are saved, it adds a new value to the chances dictionary and then resets
@@ -74,6 +102,6 @@ public class SpotManager
         }
         bestChances.Add(bestChance);
         spots[spotName].isFilled = true;
-        hiddenGifts.Add(spots[spotName], gift); 
+        hiddenGifts.Add(spots[spotName], gift);
     }
 }

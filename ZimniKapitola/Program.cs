@@ -12,18 +12,25 @@ gh.AddGiftAndOwners("Gifts.txt", "FutureOwners.txt");
 int spotsCount = 0;
 Random rnd = new Random();
 
+
+
 foreach (var spot in userSpots.usrSpots)
 {
+    familyMembers.famDictFill(userSpots);
     sm.AddSpot(userSpots.usrSpots[spotsCount]);
-    sm.FillSpot(familyMembers.Family[0], rnd.NextInt64(0, 100), familyMembers.Family[1], rnd.NextInt64(0, 100), familyMembers.Family[2], rnd.NextInt64(0, 100), familyMembers.Family[3], rnd.NextInt64(0, 100), familyMembers.Family[4], rnd.NextInt64(0, 100));
+    sm.FillSpot(familyMembers.Family[0], familyMembers.famNumberos[familyMembers.Family[0]][0], familyMembers.Family[1], rnd.NextInt64(0, 100), familyMembers.Family[2], rnd.NextInt64(0, 100), familyMembers.Family[3], rnd.NextInt64(0, 100), familyMembers.Family[4], rnd.NextInt64(0, 100));
     spotsCount += 1;
 }
-
-for (int i = 0; i < gh.Gifts.Count; i++)
+if (sm.checkGiftsVsSpots(gh))
 {
-    Gift g = new Gift(gh.FutureOwner[i], false, gh.Gifts[i]);
-    sm.HideGift(g);
+    List<int> num = sm.randomNumbers(gh);
+    for (int i = 0; i < gh.Gifts.Count; i++)
+    {
+        Gift g = new Gift(gh.FutureOwner[num[i]], false, gh.Gifts[num[i]]);
+        sm.HideGift(g);
+    }
 }
+
 string path = "TheFinalGiftPlacement.txt";
 string path2 = "AllInformations.txt";
 
